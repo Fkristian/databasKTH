@@ -1,0 +1,8 @@
+select * from
+                    (Select instructor_id, count(*)
+                    from instructor join music_lesson ml on instructor.id = ml.instructor_id
+                    where extract(month from time) = extract(month from current_date) and extract(year from time) = extract(year from current_date)
+                    group by instructor_id) as f
+where count > 2
+order by count desc
+;

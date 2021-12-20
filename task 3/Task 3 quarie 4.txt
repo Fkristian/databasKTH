@@ -1,0 +1,8 @@
+select e.music_lesson_id, time, genre,
+CASE WHEN maximum_number_of_students :: int - count(e.music_lesson_id) > 2 THEN 'More then 2 spots open'
+WHEN maximum_number_of_students :: int - count(e.music_lesson_id) = 1 or maximum_number_of_students  :: int - count(e.music_lesson_id) = 2 THEN 'There is 1 to 2 spots open'
+ELSE 'Full booked'
+END AS QuantityText
+FROM music_lesson join ensamble e on music_lesson.id = e.music_lesson_id join student_music_lesson sml on music_lesson.id = sml.music_lesson_id
+where time > current_date + cast(abs(extract(dow FROM current_date) - 7) + 1 AS int) group by e.music_lesson_id, time
+order by genre, time;

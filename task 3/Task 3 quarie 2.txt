@@ -1,0 +1,11 @@
+select avg(lessons)::numeric(20,2) as total, avg(indivdual_lesson)::numeric(20,2) as individual_lesson, avg(group_lesson)::numeric(20,2) as group_lesson, avg(ensamble)::numeric(20,2) as ensamble  from
+(select date_trunc('month', ml.time), count(ml.id) as lessons, sum(case (ld.type) when ('individual') then 1 else 0 end) as indivdual_lesson
+    , count(case when (ld.type = 'group') then ld.type else null end) as group_lesson, count(e.genre) as ensamble
+from music_lesson ml
+left outer join lesson_details ld on ml.id = ld.music_lesson_id
+left outer join ensamble e on ml.id = e.music_lesson_id
+where extract(year from ml.time) = 2017
+group by date_trunc('month', ml.time)
+order by date_trunc('month', ml.time)
+) as f
+;
