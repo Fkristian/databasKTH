@@ -1,0 +1,206 @@
+insert into person values (0,'0001010001','Adam Gudson','Applelane','01','00001','Edengarden');
+insert into person values (1,'0001020002','Eva Gudson','Applelane','01','00001','Edengarden');
+insert into person values (2,'5003020032','Gud Gudson','Applelane','01','00001','Edengarden');
+insert into person values (3,'6002020032','Görs franzen','Papplelane','05','00201','Stadgarden');
+insert into person values (4,'0102050032','Robin Franzen','Papplelane','05','00201','Stadgarden');
+insert into person values (5,'0102020232','David Henrikson','Qapplelane','02','04201','Sadgarden');
+insert into person values (6,'6002010232','David Henrikson','Qapplelane','02','04201','Sadgarden');
+insert into person values (7,'7002010232','Know Itall','Muslane','03','04201','Instreat');
+insert into person values (8,'0002010232','Alls Knoa','Slaslane','03','04201','Instreat');
+insert into parent values (0,2);
+insert into parent values (1,3);
+insert into parent values (2,6);
+insert into instructor values (0,0,7);
+insert into instructor values (1,1,8);
+
+insert into phone values ('0707123456','2');
+insert into phone values ('0707174456','3');
+insert into phone values ('0704594456','6');
+
+insert into email values ('father@sky.com','2');
+insert into email values ('halle@gmail.com','3');
+insert into email values ('bob@gmail.com','6');
+insert into email values ('know@school.com','7'),('alls@school.com','8');
+
+insert into instrument_played values ('0','guitar');
+insert into instrument_played values ('0','piano');
+
+insert into student (id, studentid, person_id) values (0,0,0),(1,1,1),(2,2,4),(3,3,5);
+insert into school values (0, 0, '2', '32123', 'skolstaden', 'skolgatan');
+
+
+insert into salery values (1,0,'320');
+insert into salery values (0,0,'400');
+insert into submission_letter values (0,1,'0001020002','Eva Gudson','Good');
+insert into submission_letter values (0,4,'0102050032','Robin Franzen','Bad');
+insert into submission_letter values (0,0,'0001010001','Adam Gudson','Good');
+insert into submission_letter values (0,5,'0102020232','David Henriksonn','Medium');
+
+
+insert into instrument values (2, 'bechstein', 'piano', 19, 45),(3, 'fazioli', 'piano', 20, 50),(4, 'sauter', 'piano', 23, 55),(5, 'stentor', 'violin', 13, 30),(6, 'cecilio', 'violin', 0, 25),(7, 'miyazawa', 'flute', 34, 20),(8, 'yamaha', 'drum set', 11, 40), (9, 'yamaha', 'guitar', 7, 30);
+insert into instrument values (0, 'gibson', 'guitar', 17, 25),(1, 'seagull', 'guitar', 20, 20);
+insert into instrument_played values (0, 'drum set'),(0, 'flute'),(0, 'violin'),(1, 'drum set'),(1, 'flute'),(1, 'guitar'),(1, 'piano'),(1, 'violin');
+insert into instrument_rental_information values (0,0,0,1::bit),(1,0,6,1::bit),(2,1, 6,0::bit),(3,1, 4,0::bit),(4,3,2,1::bit),(5,2,6,1::bit),(6,3,1,1::bit);
+
+
+insert into classroom values (0,'101');
+insert into classroom values (0,'102');
+insert into classroom values (0,'103');
+insert into classroom values (0,'104');
+insert into classroom values (0,'105');
+insert into classroom values (0,'106');
+insert into classroom values (0,'201');
+insert into classroom values (0,'202');
+insert into classroom values (0,'203');
+insert into classroom values (0,'204');
+
+insert into music_lesson values (0,(timestamp '2017-10-12 21:22:23'),'0','0','101');
+insert into music_lesson values (1,(timestamp '2017-10-12 19:22:23'),'1','0','202');
+insert into music_lesson values (2,(timestamp '2017-10-12 19:22:23'),'1','0','202');
+insert into music_lesson values (3,(timestamp '2017-10-11 20:22:23'),'1','0','101'); 
+insert into music_lesson values (4,(timestamp '2017-11-12 19:22:23'),'0','0','102');
+insert into music_lesson values (5,(timestamp '2017-11-12 09:22:23'),'1','0','102');
+insert into music_lesson values (6,(timestamp '2017-11-14 09:22:23'),'1','0','101');
+insert into music_lesson values (7,(timestamp '2017-11-13 09:22:23'),'1','0','102');
+
+insert into lesson_details values (0, 'piano','Hard','200', 'individual');
+insert into lesson_details values (1, 'piano','Hard','200', 'individual');
+insert into lesson_details values (2, 'guitar','Easy','100', 'group');
+insert into lesson_details values (3,'violin','Easy','120', 'group');
+
+insert into ensamble values (4,'6','3','Jazz','60');
+insert into ensamble values (5,'6','3','Rock','70');
+
+insert into acceptence_letter values (0,0,'aproved');
+insert into acceptence_letter values (0,1,'aproved');
+insert into acceptence_letter values (0,4,'aproved');
+insert into acceptence_letter values (0,5,'aproved');
+
+insert into student_parent values (0,0);
+insert into student_parent values (1,0);
+insert into student_parent values (2,1);
+insert into student_parent values (3,2);
+
+insert into sibling values (0, 1, 300),(1,0,300);
+
+insert into student_music_lesson values (0,0);
+insert into student_music_lesson values (1,1);
+insert into student_music_lesson values (0,2);
+insert into student_music_lesson values (1,3);
+insert into student_music_lesson values (1,2);
+insert into student_music_lesson values (3,3);
+insert into student_music_lesson values (1,4);
+insert into student_music_lesson values (2,4);
+insert into student_music_lesson values (3,4);
+insert into student_music_lesson values (1,5);
+insert into student_music_lesson values (0,5);
+insert into student_music_lesson values (2,5);
+insert into student_music_lesson values (3,5);
+
+
+insert into lesson_details values (6, 'guitar', 'Hard', 125, 'group'), (8, 'piano', 'Easy', 210, 'individual');
+insert into ensamble values (7, 8, 2, 'Punk', 70);
+insert into music_lesson values (6, (timestamp '2018-10-09 13:22:23'), 1, 0, 202), (7, (timestamp '2018-03-12 10:22:23'), 1, 0, 101), (8, (timestamp '2019-11-02 14:00:00'), 0, 0, 202);
+insert into music_lesson values (9, (timestamp '2021-12-09 13:22:23'), 1, 0, 202), (10, (timestamp '2022-01-12 10:22:23'), 1, 0, 101), (11, (timestamp '2019-12-02 14:00:00'), 0, 0, 202);
+insert into music_lesson values (12, (timestamp '2021-12-01 13:22:23'), 1, 0, 202), (13, (timestamp '2021-12-10 10:22:23'), 1, 0, 101), (14, (timestamp '2021-12-03 14:00:00'), 0, 0, 202);
+
+insert into lesson_details values (9, 'guitar', 'Hard', '200','individual');
+insert into lesson_details values (10, 'guitar', 'Hard', '200','individual');
+insert into lesson_details values (11, 'piano', 'Hard', '200','individual');
+insert into lesson_details values (12, 'piano', 'Hard', '200','individual');
+insert into lesson_details values (13, 'piano', 'Hard', '200','individual');
+
+
+insert into student_music_lesson values (0,9);
+insert into student_music_lesson values (1,10);
+insert into student_music_lesson values (0,11);
+insert into student_music_lesson values (1,12);
+insert into student_music_lesson values (1,13);
+insert into student_music_lesson values (0,14);
+
+
+insert into music_lesson values (15,(timestamp '2021-12-12 09:22:23'),'1','0','104');
+insert into student_music_lesson values (0,15);
+insert into student_music_lesson values (1,15);
+insert into student_music_lesson values (3,15);
+insert into ensamble values (15, 6, 2, 'Punk', 70);
+
+insert into music_lesson values (16,(timestamp '2021-12-16 09:22:23'),'1','0','104'),(17,(timestamp '2021-12-15 09:22:23'),'1','0','104');
+insert into ensamble values (16, 20, 5, 'Rock', 60), (17, 15, 3, 'Jazz', 40);
+
+insert into student_music_lesson values (0,16),(1,16),(3,16),(1,17),(3,17); 
+
+insert into music_lesson values (18,(timestamp '2021-12-17 09:22:23'),'0','0','104');
+insert into student_music_lesson values (0,18);
+insert into student_music_lesson values (1,18);
+insert into student_music_lesson values (3,18);
+insert into student_music_lesson values (2,18);
+insert into ensamble values (18, 4, 2, 'Jazz', 70);
+
+
+
+
+
+insert into music_lesson values (19,(timestamp '2021-12-18 09:22:23'),'0','0','104');
+insert into student_music_lesson values (0,19);
+insert into student_music_lesson values (1,19);
+insert into student_music_lesson values (3,19);
+insert into student_music_lesson values (2,19);
+insert into ensamble values (19, 4, 2, 'Jazz', 80);
+
+insert into music_lesson values (20,(timestamp '2021-12-18 09:20:23'),'0','0','104');
+insert into student_music_lesson values (0,20);
+insert into student_music_lesson values (1,20);
+insert into student_music_lesson values (3,20);
+insert into ensamble values (20, 4, 2, 'Punk', 80);
+
+
+insert into music_lesson values (22,(timestamp '2021-12-16 09:20:23'),'0','0','104');
+insert into student_music_lesson values (0,22);
+insert into student_music_lesson values (3,22);
+insert into ensamble values (22, 7, 1, 'Punk', 80);
+
+
+insert into music_lesson values (23,(timestamp '2021-12-18 19:20:23'),'0','0','104');
+insert into student_music_lesson values (0,23);
+insert into student_music_lesson values (1,23);
+insert into student_music_lesson values (3,23);
+insert into ensamble values (23, 6, 4, 'Rock', 80);
+
+
+insert into music_lesson values (24,(timestamp '2021-12-19 19:20:23'),'0','0','104');
+insert into student_music_lesson values (0,24);
+insert into student_music_lesson values (1,24);
+insert into student_music_lesson values (3,24);
+insert into ensamble values (24, 3, 3, 'Jazz', 80);
+
+
+insert into music_lesson values (31,(timestamp '2021-12-19 12:20:23'),'0','0','104');
+insert into student_music_lesson values (0,31);
+insert into student_music_lesson values (1,31);
+insert into student_music_lesson values (3,31);
+insert into ensamble values (31, 3, 3, 'Jazz', 80);
+
+
+insert into music_lesson values (32,(timestamp '2021-12-19 10:20:23'),'0','0','102');
+insert into student_music_lesson values (0,32);
+insert into student_music_lesson values (1,32);
+insert into student_music_lesson values (3,32);
+insert into ensamble values (32, 3, 3, 'Jazz', 30);
+
+insert into music_lesson values(25, (timestamp '2021-12-18 09:22:23'), 0, 0, 101), (26, (timestamp '2021-12-15 09:22:23'), 1,0,102),(27,(timestamp '2021-12-14 09:22:23'),1,0,102),(28, (timestamp '2021-12-17 09:22:23'), 0,0,202), (29, (timestamp '2021-12-17 09:22:23'), 1,0,101),(30,(timestamp '2021-12-13 17:22:23'), 0,0,101);
+insert into ensamble values(25, 10, 2,'Rock', 60),(26, 10, 2,'Rock', 70),(27, 12, 3,'Punk', 50),(28, 14, 2,'Punk', 50),(29, 9, 2,'Rock', 80),(30, 16, 4,'Jazz', 45);
+
+
+insert into student_music_lesson values (0,30);
+insert into student_music_lesson values (1,30);
+
+
+insert into student_music_lesson values(0,25),(1,25),(2,26),(1,27),(2,27),(3,27),(0,28),(1,28),(3,29);
+
+
+insert into music_lesson values (33,(timestamp '2021-12-15 20:21:23'),'0','0','104');
+insert into student_music_lesson values (0,33);
+insert into student_music_lesson values (1,33);
+insert into student_music_lesson values (3,33);
+insert into ensamble values (33, 5, 3, 'Jazz', 80);
