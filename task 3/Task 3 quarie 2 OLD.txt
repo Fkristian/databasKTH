@@ -1,4 +1,4 @@
-select avg(lessons)::numeric(20,2) as total, avg(indivdual_lesson)::numeric(20,2) as individual_lesson, avg(group_lesson)::numeric(20,2) as group_lesson, avg(ensamble)::numeric(20,2) as ensamble  from
+select sum(lessons)/12 as total, sum(indivdual_lesson)/12 as indivdual_lesson, sum(group_lesson)/12 as group_lesson, sum(ensamble)/12 as ensamble from
 (select date_trunc('month', ml.time), count(ml.id) as lessons, sum(case (ld.type) when ('individual') then 1 else 0 end) as indivdual_lesson
     , count(case when (ld.type = 'group') then ld.type else null end) as group_lesson, count(e.genre) as ensamble
 from music_lesson ml
