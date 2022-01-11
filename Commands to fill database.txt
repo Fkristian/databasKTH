@@ -226,3 +226,7 @@ insert into music_lesson values (40,(timestamp '2022-01-20 19:20:23'),'0','0','1
 insert into student_music_lesson values (0,40);
 insert into student_music_lesson values (3,40);
 insert into ensamble values (40, 3, 3, 'Jazz', 80);
+insert into music_lesson values (35,(timestamp '2022-01-12 17:20:23'),'0','0','103');
+insert into student_music_lesson values (0,35);
+insert into student_music_lesson values (3,35);
+insert into ensamble values (35, 10, 3, 'Jazz', 80);
