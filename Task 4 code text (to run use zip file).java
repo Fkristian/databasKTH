@@ -1,6 +1,7 @@
 
 package se.kth.iv1351.jdbcintro;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,25 +23,29 @@ public class BasicJdbc {
   private PreparedStatement deactivateRentalStmt;
   private PreparedStatement getOldestRentalStmt;
 
+  private Connection connection;
+
   private void findRentableInstruments(String type, ArrayList instrumentIDs) {
-    try (Connection connection = createConnection()) {
-
-      prepareStatements(connection);
-
-
+    try{
 
       getInstrumentStmt.setString(1, type);
       listInstruments(instrumentIDs);
 
-    } catch (SQLException | ClassNotFoundException exc) {
+    } catch (SQLException exc) {
+      try{
+        connection.rollback();
+        System.out.println("Failed to execute, rollback done");
+      }
+      catch (SQLException err){
+        System.err.println("Rollback failed because" + err);
+      }
       exc.printStackTrace();
     }
   }
 
   private void rentInstrument(int studentId, int instrumentId) {
-    try (Connection connection = createConnection()) {
+    try{
 
-      prepareStatements(connection);
       getStudentRentingAmountStmt.setInt(1, studentId);
       ResultSet numberOfRentedInstruments = getStudentRentingAmountStmt.executeQuery();
 
@@ -59,10 +64,20 @@ public class BasicJdbc {
           executeRental(studentId, instrumentId);
         }
 
-
+      connection.commit();
+      System.out.println("Instrument successfully rented");
     }
-    catch (SQLException | ClassNotFoundException exc) {
-      exc.printStackTrace();
+    catch (SQLException exc) {
+
+      try{
+
+        connection.rollback();
+        System.out.println("Failed to execute, rollback done");
+      }
+      catch (SQLException err){
+        System.err.println("Rollback failed because" + err);
+      }
+
     }
   }
 
@@ -75,18 +90,17 @@ public class BasicJdbc {
     rentInstrumentStmt.setInt(3, instrumentId);
     rentInstrumentStmt.executeUpdate();
 
+
+
     decreaseStorageInformationStmt.setInt(1,instrumentId);
     decreaseStorageInformationStmt.setInt(2,instrumentId);
     decreaseStorageInformationStmt.executeUpdate();
 
-    System.out.println("Instrument successfully rented");
   }
 
   private ArrayList findRentedInstruments(int studentId, String listType){
 
-    try (Connection connection = createConnection()) {
-
-      prepareStatements(connection);
+    try{
 
       getRentedInstrumentsStmt.setInt(1, studentId);
       ResultSet rentedInstruments = getRentedInstrumentsStmt.executeQuery();
@@ -104,20 +118,26 @@ public class BasicJdbc {
       }
       return instrumentIDs;
     }
-    catch (SQLException | ClassNotFoundException exc) {
-    exc.printStackTrace();
+    catch (SQLException exc) {
+      try{
+        connection.rollback();
+        System.out.println("Failed to execute, rollback done");
+      }
+      catch (SQLException err){
+        System.err.println("Rollback failed because" + err);
+      }
+
+
     }
 
     return null;
   }
 
   private void terminateRental(int studentId, int chosenInstrument, ArrayList<Integer> instrumentIDs) {
-    try (Connection connection = createConnection()) {
+    try{
 
       if(instrumentIDs.size() > 0) {
         if (chosenInstrument <= instrumentIDs.size()) {
-
-          prepareStatements(connection);
 
           int instrumentID = instrumentIDs.get(chosenInstrument - 1).intValue();
 
@@ -142,20 +162,25 @@ public class BasicJdbc {
       else {
         System.out.println("No currently rented instruments");
       }
-
-
+      connection.commit();
     }
-    catch (SQLException | ClassNotFoundException exc) {
-      exc.printStackTrace();
+    catch (SQLException exc) {
+      try{
+        connection.rollback();
+        System.out.println("Failed to execute, rollback done");
+      }
+      catch (SQLException err){
+        System.err.println("Rollback failed because" + err);
+      }
+
     }
   }
 
   private Connection createConnection() throws SQLException, ClassNotFoundException {
     Class.forName("org.postgresql.Driver");
-    return DriverManager.getConnection("jdbc:postgresql://localhost:5432/best_music_school",
-      "postgres", "password"); //Add your password to connect
-
-  }
+    return DriverManager.getConnection("jdbc:postgresql://localhost:5432/music_school",
+      "postgres", "kristian96"); //Add your password to connect
+      }
 
 
 
@@ -212,7 +237,15 @@ public class BasicJdbc {
 
     BasicJdbc dbCalls = new BasicJdbc();
     Scanner scanner = new Scanner(System.in);
+    try{
+      dbCalls.connection = dbCalls.createConnection();
+      dbCalls.connection.setAutoCommit(false);
+      dbCalls.prepareStatements(dbCalls.connection);
+    }
+    catch (SQLException | ClassNotFoundException exc) {
+      System.out.println("Could not connect: " + exc);
 
+    }
     int action;
     String instrumentType;
     int instrumentChoice;
